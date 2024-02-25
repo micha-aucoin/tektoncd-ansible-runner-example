@@ -1,6 +1,8 @@
 ---
 collections:
-  - name: community.kubernetes
+  - name: https://github.com/ansible-collections/community.kubernetes
+    type: git
     version: 0.11.1
-  - name: community.general
+  - name: https://github.com/ansible-collections/community.general
+    type: git
     version: 4.8.0
