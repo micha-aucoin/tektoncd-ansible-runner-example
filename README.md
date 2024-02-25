@@ -44,7 +44,7 @@ kubectl apply -f  https://raw.githubusercontent.com/micha-aucoin/tektoncd-ansibl
  tkn task start ansible-runner \
    --serviceaccount ansible-deployer-account \
    --param=project-dir=kubernetes \
-   --param=args='-p list-pods.yml' \
+   --param=args=-p,list-pods.yml \
    --workspace=name=runner-dir,claimName=ansible-playbooks \
    --showlog
 ```
