@@ -2,12 +2,19 @@
 
 A repo to hold Ansible runner examples for the Tektoncd Task `ansible-runner`
 
+## Namespace Context
+```shell
+kubectl create ns funstuff && \
+kubectl config set-context --current --namespace=funstuff
+```
 
 ## Common Tasks
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.1/git-clone.yaml
-kubectl apply -f  https://raw.githubusercontent.com/tektoncd-ansible-runner-example/catalog/master/playbooks-pvc.yaml
+tkn hub install task git-clone --version 0.9
+tkn hub install task ansible-runner --version 0.2
+
+kubectl apply -f  https://raw.githubusercontent.com/micha-aucoin/tektoncd-ansible-runner-example/master/playbooks-pvc.yaml
 ```
 
 ## Examples
@@ -17,7 +24,7 @@ Run the following Task to clone this repository
 ```shell
 tkn task start git-clone \
   --workspace=name=output,claimName=ansible-playbooks \
-  --param=url=https://github.com/kameshsampath/tektoncd-ansible-runner-example \
+  --param=url=https://github.com/micha-aucoin/tektoncd-ansible-runner-example \
   --param=revision=master \
   --param=deleteExisting=true \
   --showlog
@@ -28,7 +35,7 @@ tkn task start git-clone \
 You need proper RBAC in Kubernetes to allow it to perform the example tasks:
 
 ```shell
-kubectl apply -f  https://raw.githubusercontent.com/tektoncd-ansible-runner-example/master/kubernetes/ansible-deployer.yaml
+kubectl apply -f  https://raw.githubusercontent.com/micha-aucoin/tektoncd-ansible-runner-example/master/kubernetes/ansible-deployer.yaml
 ```
 
 ### Listing pods
